@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up de Bienvenue</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Overlay pour le fond */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            display: none;
+        }
+
+        /* Pop-up container */
+        #popup_message {
+            background-color: #000;
+            border: 5px solid #b03a2e;
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            /* Largeur max pour les grands écrans */
+            margin: auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            border-radius: 10px;
+        }
+
+        #popup_message h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        #popup_message img {
+            margin-bottom: 20px;
+            max-width: 100%;
+            /* Les images s'adaptent à la largeur */
+            height: auto;
+            /* Conserve le ratio */
+        }
+
+        #popup_message p {
+            color: #fff;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        /* Boutons Oui et Non */
+        .popup-button {
+            background-color: #c0392b;
+            color: white;
+            padding: 10px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .popup-button:hover {
+            background-color: #a93226;
+        }
+
+        /* Responsive : ajuster pour les petits écrans */
+        @media (max-width: 600px) {
+            #popup_message {
+                width: 90%;
+                padding: 15px;
+            }
+
+            #popup_message h3 {
+                font-size: 1rem;
+            }
+
+            .popup-button {
+                font-size: 0.9rem;
+                padding: 8px 20px;
+            }
+        }
+
+        /* Très petits écrans (smartphones) */
+        @media (max-width: 400px) {
+            #popup_message h3 {
+                font-size: 0.9rem;
+            }
+
+            .popup-button {
+                font-size: 0.8rem;
+                padding: 6px 16px;
+            }
+        }
+    </style>
+
+    <!-- Inclure jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <div id="overlay"></div>
+
+    <div id="popup_message">
+        <img src="https://v-assets.cdnsw.com/fs/Root/small/eu9qr-LOGO-VF.jpg" alt="Logo" width="200">
+
+        <!--Après avoir importer les images LOGO-VF et  -18 sur le site remplacé par ce lien la 
+
+        https://v-assets.cdnsw.com/fs/Root/small/eu9qr-LOGO-VF.webp
+
+        et celui la 
+        https://v-assets.cdnsw.com/fs/Root/normal/f03hr--18.webp 
+        
+        Cela garanti une meilleur qualité d'image et optimisation du site -->
+
+        <h3>--- BIENVENUE SUR NOTRE SITE ---</h3>
+        <img src="https://v-assets.cdnsw.com/fs/Root/normal/f03hr--18.JPG" alt="18 ans" width="150">
+        <p>Avez-vous plus de 18 ans ?</p>
+        <button class="popup-button" id="yesButton">Oui</button>
+        <button class="popup-button" id="noButton">Non</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Afficher la pop-up et l'overlay au chargement de la page
+            $('#overlay').fadeIn();
+            $('#popup_message').fadeIn();
+
+            // Si l'utilisateur clique sur "Oui"
+            $('#yesButton').on('click', function () {
+                $('#popup_message').fadeOut();
+                $('#overlay').fadeOut();
+            });
+
+            // Si l'utilisateur clique sur "Non"
+            $('#noButton').on('click', function () {
+                window.location.href = "https://www.google.com"; // Rediriger vers un autre site
+            });
+        });
+    </script>
+
+</body>
+
+</html>
